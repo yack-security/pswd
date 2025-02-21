@@ -4,50 +4,86 @@ import { Container } from './container';
 
 <Container>
   <section class="description">
-    <section>
-      <h2>Why do I need secure passwords?</h2>
-      <p>
-        Secure passwords protect your personal information and online accounts
-        from unauthorized access and cyber threats. Weak or guessable passwords
-        make it easy for hackers to breach your accounts, leading to identity
-        theft, financial loss, and privacy issues. Using strong, unique
-        passwords significantly lowers the risk of data breaches and keeps your
-        sensitive information safe. Investing in secure passwords is essential
-        for safeguarding your digital life and maintaining online security.
-      </p>
-    </section>
+    <h2 class="faq-title">FAQ <span class="arrow">▼</span></h2>
+    <div class="faq-content hidden">
+      <section>
+        <h2>Why do I need secure passwords?</h2>
+        <p>
+          Secure passwords protect your personal information and online accounts
+          from unauthorized access and cyber threats. Weak or guessable
+          passwords make it easy for hackers to breach your accounts, leading to
+          identity theft, financial loss, and privacy issues. Using strong,
+          unique passwords significantly lowers the risk of data breaches and
+          keeps your sensitive information safe. Investing in secure passwords
+          is essential for safeguarding your digital life and maintaining online
+          security.
+        </p>
+      </section>
 
-    <section>
-      <h2>What is PSWD?</h2>
-      <p>
-        PSWD is a secure, user-friendly password generator that helps you create
-        strong, unique passwords effortlessly. Whether you prefer traditional
-        character-based passwords or memorable passphrases using the Diceware
-        method, PSWD offers customizable options like length, character types,
-        and word counts to meet your security needs. Its intuitive interface
-        makes generating robust credentials for your online accounts simple and
-        efficient.
-      </p>
-    </section>
+      <section>
+        <h2>What is PSWD?</h2>
+        <p>
+          PSWD is a secure, user-friendly password generator that helps you
+          create strong, unique passwords effortlessly. Whether you prefer
+          traditional character-based passwords or memorable passphrases using
+          the Diceware method, PSWD offers customizable options like length,
+          character types, and word counts to meet your security needs. Its
+          intuitive interface makes generating robust credentials for your
+          online accounts simple and efficient.
+        </p>
+      </section>
 
-    <section>
-      <h2>Why should I use PSWD?</h2>
-      <p>
-        PSWD allows you to easily generate strong, unique passwords tailored to
-        your security needs. With options for length, character types, and word
-        counts, you can create passwords that are both secure and memorable. Its
-        user-friendly interface simplifies the password creation process,
-        removing the hassle and guesswork. By using PSWD, you enhance your
-        online security, protect your personal information, and ensure your
-        accounts are safeguarded with reliable passwords.
-      </p>
-    </section>
+      <section>
+        <h2>Why should I use PSWD?</h2>
+        <p>
+          PSWD allows you to easily generate strong, unique passwords tailored
+          to your security needs. With options for length, character types, and
+          word counts, you can create passwords that are both secure and
+          memorable. Its user-friendly interface simplifies the password
+          creation process, removing the hassle and guesswork. By using PSWD,
+          you enhance your online security, protect your personal information,
+          and ensure your accounts are safeguarded with reliable passwords.
+        </p>
+      </section>
+    </div>
   </section>
 </Container>
 
 <style>
   .description {
     padding: 60px 0;
+
+    & .faq-title {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--color-foreground-subtle);
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-neutral-200);
+    }
+
+    & .arrow {
+      font-size: 0.8em;
+      transition: transform 0.3s ease;
+    }
+
+    & .arrow.open {
+      transform: rotate(180deg);
+    }
+
+    & .faq-content {
+      transition: max-height 0.3s ease-out;
+      max-height: 1000px;
+      overflow: hidden;
+    }
+
+    & .faq-content.hidden {
+      max-height: 0;
+    }
 
     & section {
       &:not(:last-of-type) {
@@ -83,3 +119,14 @@ import { Container } from './container';
     }
   }
 </style>
+
+<script>
+  const faqTitle = document.querySelector('.faq-title');
+  const faqContent = document.querySelector('.faq-content');
+  const arrow = document.querySelector('.arrow');
+
+  faqTitle?.addEventListener('click', () => {
+    faqContent?.classList.toggle('hidden');
+    arrow?.classList.toggle('open');
+  });
+</script>

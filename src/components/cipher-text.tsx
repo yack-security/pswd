@@ -33,7 +33,7 @@ export function CipherText({ interval = 50, text }: CipherTextProps) {
 
   useEffect(() => {
     if (outputText === text) {
-      setTimeout(() => setOutputText(''), 6000);
+      setTimeout(() => setOutputText(''), 5000);
     }
   }, [outputText, text]);
 
