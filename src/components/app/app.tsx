@@ -277,13 +277,10 @@ export function App() {
     if (password) {
       const result = zxcvbn(password);
 
-      setCrackTime(
-        formatSeconds(
-          result.crack_times_seconds
-            .offline_fast_hashing_1e10_per_second as number,
-        ),
-      );
+      const adjustedCrackTime =
+        result.crack_times_seconds.offline_slow_hashing_1e4_per_second;
 
+      setCrackTime(formatSeconds(adjustedCrackTime));
       setStrength(result.score + 1);
     } else {
       setCrackTime('');
@@ -363,10 +360,18 @@ export function App() {
 
             <p className={styles.attempts}>
               <span className={styles.mono}>
-                <span className={styles.accent}>*</span> 10<sup>10</sup>
+                <span className={styles.accent}>*</span> 10<sup>4</sup>
               </span>{' '}
               <span className={styles.text}>
                 hash attempts <span>/ second</span>
+              </span>
+            </p>
+            <p className={styles.attempts}>
+              <span className={styles.mono}>
+                <span className={styles.accent}>* moderate work factor</span>
+              </span>{' '}
+              <span className={styles.text}>
+                such as bcrypt, scrypt, PBKDF2
               </span>
             </p>
           </div>
@@ -582,11 +587,6 @@ export function App() {
           </div>
         )}
       </div>
-
-      <p className={styles.donate}>
-        Support me with a <a href="https://buymeacoffee.com/remvze">donation</a>
-        .
-      </p>
     </Container>
   );
 }

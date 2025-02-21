@@ -16,9 +16,23 @@ body {
   font-size: var(--font-base);
   color: var(--color-foreground);
   background-color: var(--color-neutral-50);
+  overflow-x: hidden;
 }
 
 ::selection {
   color: var(--color-foreground);
   background-color: var(--color-neutral-300);
+}
+
+.this-background {
+  position: relative;
+  max-height: 100vh;
+  background-image: url('/images/background.svg');
+  background-position: calc(100% + 10rem) bottom;
+  background-repeat: no-repeat;
+  background-size: 30% auto;
+  display: flex;
+  flex-direction: column;
+  /* background-position: right bottom;
+  margin-right: -20em; */
 }
